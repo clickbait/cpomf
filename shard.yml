@@ -1,0 +1,23 @@
+name: cpomf
+version: 0.1.0
+
+authors:
+  - neko <neko@pomf.is>
+
+dependencies:
+  crouter:
+    github: jreinert/crouter
+  redis:
+    github: stefanwille/crystal-redis
+    version: ~> 1.5.2
+  slang:
+    github: jeromegn/slang
+    version: ~> 1.3.0
+
+development_dependencies:
+  spec2:
+    github: waterlink/spec2.cr
+    version: ~> 0.8
+  power_assert:
+    github: RX14/power_assert.cr
+    version: ~> 0.2.4

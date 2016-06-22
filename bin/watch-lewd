@@ -1,0 +1,1 @@
+while true; do find src/ | grep -v 'src/pomr/public' | bin/entr -r crystal pomf.cr; done

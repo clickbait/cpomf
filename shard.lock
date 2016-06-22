@@ -1,0 +1,22 @@
+version: 1.0
+shards:
+  crouter:
+    github: jreinert/crouter
+    commit: fef15a5d05fe123705e936b1cbfba5b8402003b0
+
+  power_assert:
+    github: RX14/power_assert.cr
+    version: 0.2.4
+
+  redis:
+    github: stefanwille/crystal-redis
+    version: 1.5.2
+
+  slang:
+    github: jeromegn/slang
+    version: 1.3.1
+
+  spec2:
+    github: waterlink/spec2.cr
+    version: 0.8.1
+

@@ -1,0 +1,2 @@
+#!/bin/bash
+bin/compose-dev run --rm -e POMF_SPEC=true pomf crystal spec
