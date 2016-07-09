@@ -13,7 +13,7 @@ html
     header
       .wrapper
         h1
-          a href="#"
+          a href="/"
             == "<i class=\"fa fa-paw\" aria-hidden=\"true\"></i>nya<i>.is</i>"
         ul
           li
