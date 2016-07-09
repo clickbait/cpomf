@@ -4,6 +4,14 @@ shards:
     github: jreinert/crouter
     commit: fef15a5d05fe123705e936b1cbfba5b8402003b0
 
+  pg:
+    github: will/crystal-pg
+    version: 0.7.1
+
+  pool:
+    github: ysbaddaden/pool
+    version: 0.2.3
+
   power_assert:
     github: RX14/power_assert.cr
     version: 0.2.4

@@ -1,5 +1,7 @@
 require "crouter"
 require "redis"
+require "pg"
+require "pool/connection"
 require "http/server"
 require "slang"
 
@@ -7,6 +9,22 @@ require "./pomf/util/**"
 require "./pomf/**"
 
 module Pomf
+  def self.db
+    @@pg ||= ConnectionPool.new(capacity: 25) do
+      conn = nil
+      timespan = Util.timed do
+        conninfo = PQ::ConnInfo.from_conninfo_string(ENV["POMF_DATABASE_URL"])
+        conn = if ENV["POMF_DEBUG"]? == "true" && ENV["POMF_SPEC"]? != "true"
+                 Util::PGSpy.new(conninfo)
+               else
+                 PG::Connection.new(conninfo)
+               end
+      end
+
+      puts "Connected to Postgresql in #{timespan.total_milliseconds}ms"
+      conn.not_nil!
+    end
+  end
   def self.redis
     @@redis ||= ConnectionPool.new(capacity: 25) do
       conn = nil
