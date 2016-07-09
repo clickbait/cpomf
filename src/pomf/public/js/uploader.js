@@ -40,9 +40,11 @@ $body.on('drag dragstart dragend dragover dragenter dragleave drop', function(e)
 })
 .on('dragover dragenter', function() {
     $body.addClass('is-dragover');
+    document.getElementById('browse').innerHTML = "Drop your file(s)!";
 })
 .on('dragleave dragend drop', function() {
     $body.removeClass('is-dragover');
+    document.getElementById('browse').innerHTML = "Click here or drag your file(s) anywhere to start uploading.";
 })
 .on('drop', function(e) {
     droppedFiles = e.originalEvent.dataTransfer.files;
