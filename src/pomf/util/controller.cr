@@ -5,6 +5,10 @@ module Pomf::Util
     def initialize(@context, @params)
     end
 
+    def logged_in_user
+      Util::User.logged_in_user(context)
+    end
+
     property title : String?
     property subtitle : String?
 

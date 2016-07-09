@@ -1,9 +1,12 @@
 require "crouter"
+require "jwt"
 require "redis"
 require "pg"
 require "pool/connection"
 require "http/server"
+require "crypto/bcrypt"
 require "slang"
+require "CrystalEmail"
 
 require "./pomf/util/**"
 require "./pomf/**"
@@ -35,6 +38,14 @@ module Pomf
 
       puts "Connected to Redis in #{timespan.total_milliseconds}ms"
       conn.not_nil!
+    end
+  end
+
+  def self.bcrypt_cost
+    if ENV["POMF_DEBUG"]? == "true"
+      4
+    else
+      14
     end
   end
 

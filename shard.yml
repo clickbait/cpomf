@@ -7,6 +7,10 @@ authors:
 dependencies:
   crouter:
     github: jreinert/crouter
+  CrystalEmail:
+    github: Nephos/CrystalEmail
+  jwt:
+    github: greyblake/crystal-jwt
   pg:
     github: will/crystal-pg
     version: ~> 0.7.1

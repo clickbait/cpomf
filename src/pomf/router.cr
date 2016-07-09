@@ -1,11 +1,15 @@
 module Pomf
   class Router < Crouter::Router
     get "/", "PageController#home"
+    get "/register", "PageController#register"
+    get "/login", "PageController#login"
     get "/about", "PageController#about"
     get "/faq", "PageController#faq"
     get "/contact", "PageController#contact"
 
     post "/upload", "UploadController#do_upload"
+    post "/login", "UserController#do_login"
+    post "/register", "UserController#do_register"
 
     # Static files handler
     if ENV["POMF_DEBUG"]? == "true"

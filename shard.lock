@@ -1,8 +1,16 @@
 version: 1.0
 shards:
+  CrystalEmail:
+    github: Nephos/CrystalEmail
+    version: 0.2.3.1
+
   crouter:
     github: jreinert/crouter
     commit: fef15a5d05fe123705e936b1cbfba5b8402003b0
+
+  jwt:
+    github: greyblake/crystal-jwt
+    version: 0.1.1
 
   pg:
     github: will/crystal-pg
@@ -26,5 +34,5 @@ shards:
 
   spec2:
     github: waterlink/spec2.cr
-    version: 0.8.1
+    version: 0.9.0
 
