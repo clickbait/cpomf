@@ -6,5 +6,14 @@ module Pomf
       @title = "Weeb File Hosting"
       render "pages/home"
     end
+
+    def about
+    end
+
+    def faq
+    end
+
+    def contact
+    end
   end
 end
