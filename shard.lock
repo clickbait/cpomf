@@ -14,7 +14,7 @@ shards:
 
   slang:
     github: jeromegn/slang
-    version: 1.3.1
+    commit: d9dd30fb0d130f5357fa148a85b4c2e115a08f78
 
   spec2:
     github: waterlink/spec2.cr
