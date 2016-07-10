@@ -6,11 +6,11 @@ form action="/login" method="post"
         ul.errors
           - errors.each do |error|
             li.error = error
-      div.row
+      div.fieldset
         label for="email" Email
         input type="text" id="email" name="email" value=email
 
-      div.row
+      div.fieldset
         label for="password" Password
         input type="password" id="password" name="password" value=password
 
