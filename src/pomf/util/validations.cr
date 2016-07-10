@@ -9,11 +9,59 @@ module Pomf::Util
 
       username == str.downcase ? username : nil
     end
+
     def self.email(str : String)
       (CrystalEmail::Rfc5322::Public.validates? str) ? str : nil
     end
+
     def self.password(str : String)
       str.bytesize >= 8 ? str : nil
     end
+  end
+
+  def self.validate(email = nil, password = nil, username = nil, id = -1)
+    errors = [] of String
+
+    if !username.nil?
+      puts "validating username"
+      username = Validations.username(username)
+      if username.nil?
+        errors << "Username is invalid or blacklisted."
+      else
+        Pomf.db.connection do |db|
+          count = db.exec("SELECT FROM users WHERE username = $1 AND id != $2", [username, id]).rows.size
+
+          if count > 0
+            errors << "Username is already taken."
+          end
+        end
+      end
+    end
+
+    if !email.nil?
+      puts "validating email"
+      email = Validations.email(email)
+      if email.nil?
+        errors << "Email is invalid."
+      else
+        Pomf.db.connection do |db|
+          count = db.exec("SELECT FROM users WHERE email = $1 AND id != $2", [email, id]).rows.size
+
+          if count > 0
+            errors << "Email is already taken."
+          end
+        end
+      end
+    end
+
+    if !password.nil?
+      puts "validating password"
+      password = Validations.password(password)
+      if password.nil?
+        errors << "Password is invalid."
+      end
+    end
+
+    errors
   end
 end
