@@ -24,4 +24,22 @@ module Pomf::Util
       Slang.embed(__DIR__ + "/../views/page.template.slang", "context.response")
     end
   end
+
+  module AdminController
+    include Util::Controller
+
+    def initialize(@context, @params)
+      if logged_in_user.nil? || !designated_admins.includes?(logged_in_user.not_nil!["username"])
+        Util.redirect("/")
+      end
+    end
+
+    private def designated_admins
+      ENV["POMF_ADMINS"].split(',')
+    end
+
+    private def __default_template(child)
+      Slang.embed(__DIR__ + "/../views/admin.template.slang", "context.response")
+    end
+  end
 end

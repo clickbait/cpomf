@@ -1,15 +1,15 @@
 doctype html
 html
   head
-    title = @title ? "Pomf - #{@title}" : "Pomf"
+    title = @title ? "Admin - #{@title}" : "Admin"
 
     meta name="viewport" content="width=device-width, initial-scale=1"
     link href="/public/css/flexboxgrid.min.css" rel="stylesheet"
-    link href="/public/css/main.css" rel="stylesheet"
+    link href="/public/css/admin.css" rel="stylesheet"
     link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
 
     script type="text/javascript" src="/public/js/jquery.js"
-    script type="text/javascript" src="/public/js/main.js"
+    script type="text/javascript" src="/public/js/admin.js"
   body
     .navigation
       - render "partials/usernav.template"
@@ -18,15 +18,16 @@ html
           h1
             a href="/"
               == "<i class=\"fa fa-paw\" aria-hidden=\"true\"></i>nya<i>.is</i>"
+          h2 Admin
           ul
             li
-              a href="#" Home
+              a href="/admin/" Dashboard
             li
-              a href="#" News
+              a href="/admin/users/" Users
             li
-              a href="#" FAQ
+              a href="#" Files
             li
-              a href="#" Transparency
-            li
-              a href="#" Contact
-    - child.call
+              a href="#" CMS
+    .body
+      .wrapper
+        - child.call

@@ -1,0 +1,134 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+
+/* PINK: #ce98da; */
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300italic"); /* host these locally later */
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #fff;
+  color: #111;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+.wrapper {
+  max-width: 90%;
+  margin: 0 auto;
+}
+a {
+  text-decoration: none;
+}
+nav.user {
+  color: #BCBCBC;
+  background: #000;
+  line-height: 40px;
+  font-size: 14px;
+  width: 100%;
+}
+nav.user .wrapper {
+  display: flex;
+  flex-direction: row;
+}
+nav.user .left {
+  flex-grow: 1;
+}
+nav.user .left ul li {
+  display: inline-block;
+}
+nav.user .left ul li a:not(:hover) {
+  color: inherit;
+}
+nav.user .left ul li:not(:first-of-type) {
+  margin-left: 10px;
+}
+nav.user .right {
+  text-align: right;
+}
+nav.user a {
+  color: #ce98da;
+}
+header {
+  line-height: 50px;
+  width: 100%;
+  background: #111;
+  color: #BCBCBC;
+}
+header a {
+  color: inherit;
+  pointer-events: initial;
+}
+header .wrapper {
+  display: flex;
+  flex-direction: row;
+}
+header h1 {
+  font-size: 30px;
+}
+header h1 i.fa {
+  font-size: 20px;
+  position: relative;
+  left: -5px;
+  top: -2px;
+  transform: rotate(-35deg);
+}
+header h1 i {
+  color: #ce98da;
+}
+header h2 {
+  margin-left: 10px;
+}
+header ul {
+  flex-grow: 1;
+  text-align: right;
+}
+header ul li {
+  font-size: 16px;
+  display: inline-block;
+}
+header ul li:not(:last-of-type) {
+  margin-right: 15px;
+}
+header ul li a:hover {
+  color: #ce98da;
+}
+
+.body {
+  margin-top: 50px;
+}
+
+.box {
+  border: 1px solid #111;
+}
+
+.box > h4 {
+  border-bottom: 1px solid #111;
+  padding: 5px 10px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.box > div {
+  padding: 10px;
+}
+
+.box > div table {
+  width: 100%;
+}
+
+.box > div table td:last-of-type:not(:first-of-type) {
+  text-align: right;
+}
+.box > div table tr:not(:first-of-type) td {
+  padding-top: 10px;
+}
+
+.box > div table tr:not(:last-of-type) td {
+  border-bottom: 1px solid #111;
+  padding-bottom: 10px;
+}
+
+.body h2 {
+  font-size: 20px;
+}
