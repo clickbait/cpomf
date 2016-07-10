@@ -13,7 +13,7 @@ module Pomf::Util
       (CrystalEmail::Rfc5322::Public.validates? str) ? str : nil
     end
     def self.password(str : String)
-      str.bytesize > 8 ? str : nil
+      str.bytesize >= 8 ? str : nil
     end
   end
 end
