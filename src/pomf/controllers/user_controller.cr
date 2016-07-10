@@ -46,38 +46,10 @@ module Pomf
       email = Util::Validations.email(params["email"])
       password = Util::Validations.password(params["password"])
 
-      errors = [] of String
-
-      if !username
-        errors << "Username is invalid."
-      else
-        Pomf.db.connection do |db|
-          count = db.exec("SELECT FROM users WHERE username = $1", [username]).rows.size
-
-          if count > 0 #|| blacklist.includes?(username)
-            errors << "Username is already taken."
-          end
-        end
-      end
-
-      if !email
-        errors << "Email is invalid."
-      else
-        Pomf.db.connection do |db|
-          count = db.exec("SELECT FROM users WHERE email = $1", [email]).rows.size
-
-          if count > 0
-            errors << "Email is already in use."
-          end
-        end
-      end
-
-      if !password
-        errors << "Password is invalid."
-      end
+      errors = Util.validate(params["email"], params["password"], params["username"], 0)
 
       if errors.empty?
-        user = Models::User.new(username.not_nil!, password.not_nil!, email.not_nil!).create!
+        user = Models::User.new(params["username"], params["password"], params["email"]).create!
         Util.redirect("/")
       else
         render "pages/register"
