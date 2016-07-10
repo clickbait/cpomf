@@ -23,7 +23,7 @@ module Pomf::Models
 
     def self.where_multi(query : String, params = [] of Nil)
       Pomf.db.connection do |db|
-        query = "SELECT id, username, password_bcrypt, email FROM users WHERE #{query}"
+        query = "SELECT id, username, password_bcrypt, email FROM users WHERE #{query} ORDER BY username ASC"
         rows = db.exec({Int32, String, String, String}, query, params).rows
         rows.map { |row| User.new(*row) }
       end
