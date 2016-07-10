@@ -23,7 +23,6 @@ module Pomf::Util
     errors = [] of String
 
     if !username.nil?
-      puts "validating username"
       username = Validations.username(username)
       if username.nil?
         errors << "Username is invalid or blacklisted."
@@ -39,7 +38,6 @@ module Pomf::Util
     end
 
     if !email.nil?
-      puts "validating email"
       email = Validations.email(email)
       if email.nil?
         errors << "Email is invalid."
@@ -55,7 +53,6 @@ module Pomf::Util
     end
 
     if !password.nil?
-      puts "validating password"
       password = Validations.password(password)
       if password.nil?
         errors << "Password is invalid."
