@@ -5,6 +5,8 @@ module Pomf::Util
 
       username = !username.empty? ? username : nil
 
+      username = !ENV["POMF_BLACKLISTED_NAMES"].split(',').includes?(username) ? username : nil
+
       username == str.downcase ? username : nil
     end
     def self.email(str : String)
