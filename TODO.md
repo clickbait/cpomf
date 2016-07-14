@@ -10,7 +10,21 @@ TODO
   - [ ] FAQ
   - [ ] Contact
 - [X] Backend
+  - [X] Admin panel
+    - [X] User manager 
+    - [ ] Page manager
+    - [ ] Upload manager
+  - [X] Users
+    - [X] Register
+    - [X] Log in
+    - [ ] Manage details
+    - [ ] Edit settings
+    - [ ] Manage uploads
   - [ ] Handle Uploads (dependant on https://github.com/crystal-lang/crystal/issues/1989)
+    - [ ] Handle user subdomains
+    - [ ] Temporary file hosting
+    - [ ] Encrypted file hosting
+    - [ ] Automated gunzipping to optimise storage space
   - [ ] Store file hashes in redis
   - [ ] Handle file deletion
   - [ ] Full compatibility with Pomf API
