@@ -13,7 +13,7 @@ require "./pomf/**"
 
 module Pomf
   def self.db
-    @@pg ||= ConnectionPool.new(capacity: 25) do
+    @@pg ||= ConnectionPool(PG::Connection).new(capacity: 25) do
       conn = nil
       timespan = Util.timed do
         conninfo = PQ::ConnInfo.from_conninfo_string(ENV["POMF_DATABASE_URL"])
@@ -28,8 +28,9 @@ module Pomf
       conn.not_nil!
     end
   end
+
   def self.redis
-    @@redis ||= ConnectionPool.new(capacity: 25) do
+    @@redis ||= ConnectionPool(Redis).new(capacity: 25) do
       conn = nil
       timespan = Util.timed do
         host = `getent hosts #{ENV["REDIS_HOST"]} | awk '{ printf $1 }'`
