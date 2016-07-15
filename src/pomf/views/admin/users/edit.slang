@@ -22,4 +22,4 @@ form action="" method="post"
       p.hint No less than 8 characters long.
 
     #button
-      button type="submit" Create Account
+      button type="submit" Save User

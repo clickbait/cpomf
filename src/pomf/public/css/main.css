@@ -234,3 +234,14 @@ body.is-dragover .above_fold .inner_bg {
   padding: 5px 0;
   margin: 30px 0 0 0;
 }
+
+.page.single {
+  padding-top: 20px;
+  border-top: 1px solid #333;
+  margin-top: 120px;
+}
+
+.page.single h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}

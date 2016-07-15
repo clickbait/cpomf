@@ -10,4 +10,10 @@ class String
   def trim(char : Char)
     lchomp(char).chomp(char)
   end
+
+  def to_slug
+    slug = self.downcase.gsub(/[^A-Za-z1-9]+/, '-').trim('-')
+
+    slug.empty? ? "-" : slug
+  end
 end

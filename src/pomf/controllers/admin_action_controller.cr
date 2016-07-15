@@ -28,7 +28,6 @@ module Pomf
       if !errors.empty?
         render "admin/users/edit"
       else
-
         puts params["username"]
         user.username = params["username"].downcase
         user.email = params["email"].downcase
@@ -40,6 +39,35 @@ module Pomf
 
         Util.redirect("/admin/users")
       end
+    end
+
+    def pages_new
+      if !params["title"].nil?
+        page = Models::Page.new(params["title"], params["content"])
+
+        page.create!
+      end
+
+      Util.redirect("/admin/pages")
+    end
+
+    def pages_edit
+      slug = params["slug"].to_slug
+
+      if slug.empty?
+        Util.redirect("/admin/pages")
+      end
+
+      errors = [] of String
+
+      page = Models::Page.where("slug = $1", [slug])
+
+      page.title = params["title"]
+      page.content = params["content"]
+
+      page.save
+
+      Util.redirect("/admin/pages")
     end
   end
 end

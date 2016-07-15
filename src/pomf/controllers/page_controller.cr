@@ -34,13 +34,19 @@ module Pomf
       render "pages/login"
     end
 
-    def about
-    end
+    def pages
+      slug = params["slug"].to_slug
 
-    def faq
-    end
+      if slug.empty?
+        Util.redirect("/")
+        # TODO: replace with 404
+      end
 
-    def contact
+      page = Models::Page.where("slug = $1", [slug])
+
+      @title = page.title
+
+      render "pages/page"
     end
   end
 end

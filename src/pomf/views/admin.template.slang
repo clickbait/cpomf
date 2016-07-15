@@ -27,7 +27,7 @@ html
             li
               a href="#" Files
             li
-              a href="#" CMS
+              a href="/admin/pages/" Pages
     .body
       .wrapper
         - child.call

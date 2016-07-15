@@ -6,13 +6,10 @@ TODO
       - [X] Drag & Drop
       - [ ] Handle responses from backend
     - [X] UI/UX
-  - [ ] About
-  - [ ] FAQ
-  - [ ] Contact
 - [X] Backend
   - [X] Admin panel
     - [X] User manager 
-    - [ ] Page manager
+    - [X] Page manager
     - [ ] Upload manager
   - [X] Users
     - [X] Register

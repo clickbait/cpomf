@@ -24,9 +24,9 @@ html
             li
               a href="#" News
             li
-              a href="#" FAQ
+              a href="/pages/faq" FAQ
             li
-              a href="#" Transparency
+              a href="/pages/about" About
             li
-              a href="#" Contact
+              a href="/pages/contact" Contact
     - child.call
