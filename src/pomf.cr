@@ -55,6 +55,14 @@ module Pomf
     @@static_handler ||= HTTP::StaticFileHandler.new(__DIR__ + "/pomf/public/")
   end
 
+  def self.upload_dir
+    @@upload_dir ||= ENV["POMF_UPLOAD_DIR"]
+  end
+
+  def self.upload_url
+    @@upload_url ||= ENV["POMF_UPLOAD_URL"]
+  end
+
   def self.run
     handlers = [] of HTTP::Handler
 

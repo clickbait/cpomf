@@ -5,7 +5,7 @@ module Pomf
     get "/login", "PageController#login"
     get "/pages/:slug", "PageController#pages"
 
-    post "/upload", "UploadController#do_upload"
+    post "/upload(.php)", "UploadController#do_upload"
     post "/login", "UserController#do_login"
     post "/register", "UserController#do_register"
 
