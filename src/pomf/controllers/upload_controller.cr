@@ -75,10 +75,11 @@ module Pomf
     def unique_filename(metadata)
       3.times do
         filename = generate_filename(metadata)
-        Pomf.db.connection do |db|
-          count = db.exec({Int64}, "SELECT count(*) FROM uploads WHERE filename = $1", [filename]).rows.first[0]
-          return filename if count == 0
-        end
+
+        upload_dir = Pomf.upload_dir
+        file_path = File.join(upload_dir, filename)
+
+        return filename if !File.exists?(file_path)
       end
       raise "Conflicted 3 times!"
     end
