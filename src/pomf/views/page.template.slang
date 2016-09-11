@@ -20,13 +20,11 @@ html
               == "<i class=\"fa fa-paw\" aria-hidden=\"true\"></i>nya<i>.is</i>"
           ul
             li
-              a href="#" Home
+              a href="/" Home
             li
-              a href="#" News
+              a href="/faq" FAQ
             li
-              a href="/pages/faq" FAQ
+              a href="/about" About
             li
-              a href="/pages/about" About
-            li
-              a href="/pages/contact" Contact
+              a href="/contact" Contact
     - child.call

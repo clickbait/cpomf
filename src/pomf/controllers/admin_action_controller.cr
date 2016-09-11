@@ -62,10 +62,14 @@ module Pomf
 
       page = Models::Page.where("slug = $1", [slug])
 
-      page.title = params["title"]
-      page.content = params["content"]
+      if !page.nil?
+        page.title = params["title"]
+        page.content = params["content"]
 
-      page.save
+        page.save
+      else
+        errors << "Page does not exist"
+      end
 
       Util.redirect("/admin/pages")
     end

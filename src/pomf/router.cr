@@ -47,5 +47,7 @@ module Pomf
         nil
       }
     end
+
+    get "/:slug", "PageController#pages"
   end
 end

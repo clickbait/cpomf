@@ -53,8 +53,6 @@ module Pomf
     def pages_new
       @title = "New Page"
 
-      pages = Models::Page.where_multi("1=1")
-
       errors = [] of String
 
       render "admin/pages/new"
@@ -71,9 +69,13 @@ module Pomf
 
       page = Models::Page.where("slug = $1", [slug])
 
-      @title = "Editing #{page.title}"
+      if !page.nil?
+        @title = "Editing #{page.title}"
 
-      render "admin/pages/edit"
+        render "admin/pages/edit"
+      else
+        Util.redirect("/admin/pages")
+      end
     end
   end
 end

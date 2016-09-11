@@ -7,7 +7,7 @@ nav.user
             a href="/files" My Files
     .right
       - if !logged_in_user.nil?
-          a href="#" = logged_in_user.not_nil!["username"]
+          == "Hiya, #{logged_in_user.not_nil!["username"]}!"
       - else
         a href="/login" Login
         == " Or "

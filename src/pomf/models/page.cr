@@ -16,8 +16,9 @@ module Pomf::Models
     def self.where(query : String, params = [] of Nil)
       Pomf.db.connection do |db|
         query = "SELECT id, title, slug, content FROM pages WHERE #{query} LIMIT 1"
-        row = db.exec({Int32, String, String, String}, query, params).rows.first
-        Page.new(*row)
+        rows = db.exec({Int32, String, String, String}, query, params).rows
+
+        !rows.empty? ? Page.new(*rows.first) : nil
       end
     end
 

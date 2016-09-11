@@ -9,11 +9,11 @@ form action="" method="post"
 
     div.fieldset
       label for="title" Title
-      input type="text" id="title" name="title" value=page.title
+      input type="text" id="title" name="title" value=page.not_nil!.title
 
     div.fieldset
       label for="content" Content
-      == "<textarea id=\"content\" name=\"content\">#{page.content}</textarea>"
+      == "<textarea id=\"content\" name=\"content\">#{page.not_nil!.content}</textarea>"
 
     #button
       button type="submit" Save Page
