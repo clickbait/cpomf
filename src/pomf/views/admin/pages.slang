@@ -2,7 +2,7 @@
   .col-xs-12
     .box
       h4 Pages
-      a href="/admin/pages/new"
+        a href="/admin/pages/new" New
       div
         table
           - pages.each do |page|
