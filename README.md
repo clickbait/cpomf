@@ -4,17 +4,25 @@ pomf backend written in crystal for pomf.is
 
 ## Installation
 
+### Prerequisites
+- Postgres
+- Mschematool
+
+### Setup
 Set your environment variables:
 
-`POMF_PORT` - The port that cpomf listens to.
-`POMF_DEBUG` - Whether or not cpomf is in debug mode true|false
-`POMF_DATABASE_URL` - The postgres URL for your database, eg; `postgres://localhost/pomf_database`
-`POMF_SECRET_KEY` - Your secret key; preferably something that's long and randomly generated.
-`POMF_ADMINS` - A comma seperated list of admin usernames; keeping in mind that usernames are lowercase and alphanumeric only.
-`POMF_BLACKLISTED_NAMES` - A comma seperated list of banned usernames; it's usually good to blacklist names like admin or anything else you don't want users to use.
-`POMF_UPLOAD_DIR` - Relative path to your pomf upload directory.
-`POMF_UPLOAD_URL` - The upload URL for your site; eg. `https://u.pomf.is/`
-```
+- `POMF_PORT` - The port that cpomf listens to.
+- `POMF_DEBUG` - Whether or not cpomf is in debug mode true|false
+- `POMF_DATABASE_URL` - The postgres URL for your database, eg; `postgres://localhost/pomf_database`
+- `POMF_SECRET_KEY` - Your secret key; preferably something that's long and randomly generated.
+- `POMF_ADMINS` - A comma seperated list of admin usernames; keeping in mind that usernames are lowercase and alphanumeric only.
+- `POMF_BLACKLISTED_NAMES` - A comma seperated list of banned usernames; it's usually good to blacklist names like admin or anything else you don't want users to use.
+- `POMF_UPLOAD_DIR` - Relative path to your pomf upload directory.
+- `POMF_UPLOAD_URL` - The upload URL for your site; eg. `https://u.pomf.is/`
+
+Configure `mschematool_config.py` with accurate postgres settings.
+
+Run `mschematool default init_db` and then `mschematool default sync`
 
 Compile the project with `crystal build --release pomf.cr`
 
@@ -26,6 +34,7 @@ Use a nginx reverse proxy to cpomf; and use nginx to handle static files, includ
 
 Please make sure that you modify the default templates and styles before you host your own clone; I've left nya.is' designs in as a reference, but being unique is king in a sea of clones.
 
+Make sure you create your account before you release your site.
 
 ## Contributing
 
