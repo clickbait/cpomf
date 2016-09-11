@@ -4,13 +4,7 @@ nav.user
       - if !logged_in_user.nil?
         ul
           li
-            a href="#" My Files
-          li
-            a href="#" Account
-          li
-            a href="#" Placeholder
-          li
-            a href="#" Placeholder
+            a href="/files" My Files
     .right
       - if !logged_in_user.nil?
           a href="#" = logged_in_user.not_nil!["username"]

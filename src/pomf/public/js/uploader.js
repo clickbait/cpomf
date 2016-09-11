@@ -1,6 +1,7 @@
 var uploader = new plupload.Uploader({
     browse_button: 'browse', // this can be an id of a DOM element or the DOM element itself
-    url: 'upload'
+    url: 'upload',
+    file_data_name: 'files[]'
 });
 
 var scrolled_once = false;
@@ -11,7 +12,12 @@ uploader.bind('FilesAdded', function(up, files) {
     console.log("fired filesadded");
     var html = '';
     plupload.each(files, function(file) {
-        html += '<li id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></li>';
+        name_truncated = file.name;
+        if (file.name.length > 24) {
+            name_truncated = name_truncated.substring(0, 21) + "...";
+        }
+
+        html += '<li id="' + file.id + '"><p title="' + file.name + '">' + name_truncated + '</p> (' + plupload.formatSize(file.size) + ') <b></b></li>';
     });
     document.getElementById('upload-list').innerHTML += html;
     document.getElementById('upload-container').style.display = 'block';
@@ -30,6 +36,18 @@ uploader.bind('UploadProgress', function(up, file) {
 
 uploader.bind('Error', function(up, err) {
     document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+});
+
+uploader.bind('FileUploaded', function (up, file, response) {
+    file_name = document.getElementById(file.id).getElementsByTagName('p')[0].innerHTML;
+
+    console.log(file_name)
+
+    url = JSON.parse(response.response).files[0].url
+
+    document.getElementById(file.id).getElementsByTagName('p')[0].innerHTML = '<a href="' + url + '" target="_blank">' + file_name + '</a>';
+
+
 });
 
 $body = $('body');

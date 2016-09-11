@@ -36,6 +36,12 @@ module Pomf
       render "admin/users/edit"
     end
 
+    def files
+      @title = "Files"
+
+      render "admin/files"
+    end
+
     def pages
       @title = "Pages"
 

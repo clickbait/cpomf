@@ -69,5 +69,46 @@ module Pomf
 
       Util.redirect("/admin/pages")
     end
+
+    def files
+      if !params["file"]?.nil?
+        files_for_deleting = Models::Upload.where_multi("filename = $1", [params["file"]])
+
+        if files_for_deleting
+          file_ids_for_deleting = [] of Int32
+          file_names_for_deleting = [] of String
+
+          upload_dir = Pomf.upload_dir
+
+          files_for_deleting.each do |file|
+            file_ids_for_deleting << file.id
+
+            file = File.join(upload_dir, file.filename)
+
+            if File.exists?(file)
+              File.delete(file)
+            end
+          end
+
+          Pomf.db.connection do |db|
+            db.exec("DELETE FROM uploads WHERE user_id=$1 AND id = ANY($2::INT[])", [logged_in_user.not_nil!["id"], "{#{file_ids_for_deleting.join(",")}}"])
+          end
+        end
+        Util.redirect("/admin/files")
+      elsif !params["username"]?.nil?
+        user = Models::User.where("username = $1", [params["username"]])
+
+        if user
+          user_files = Models::Upload.where_multi("user_id=$1", [user.id])
+
+          url = URI.parse Pomf.upload_url
+          url = url.to_s
+
+          render "admin/files_user"
+        end
+      else
+        Util.redirect("/admin/files")
+      end
+    end
   end
 end

@@ -4,11 +4,15 @@ module Pomf::Models
     getter user_id : Int32?
     property filename : String
     getter original_filename : String?
-    getter size : UInt64
+    getter size : Int64
     getter created : Time
 
     def self.new(filename, size, original_filename = nil, user_id : Int? = nil)
       new(-1, user_id, filename, original_filename, size, Time.now)
+    end
+
+    def self.new(id, user_id, filename, size, created, original_filename = nil)
+      new(id, user_id, filename, original_filename, size, created)
     end
 
     def self.new(filename, size, original_filename = nil, user : User? = nil)
@@ -18,16 +22,16 @@ module Pomf::Models
     def self.where(query : String, params = [] of Nil)
       Pomf.db.connection do |db|
         query = "SELECT id, user_id, filename, original_filename, size, created FROM uploads WHERE #{query} LIMIT 1"
-        row = db.exec({Int32, Int32 | Nil, String, String | Nil, UInt64, Time}, query, params).rows.first
-        Page.new(*row)
+        row = db.exec({Int32, Int32 | Nil, String, String | Nil, Int64, Time}, query, params).rows.first
+        Upload.new(*row)
       end
     end
 
     def self.where_multi(query : String, params = [] of Nil)
       Pomf.db.connection do |db|
         query = "SELECT id, user_id, filename, original_filename, size, created FROM uploads WHERE #{query}"
-        rows = db.exec({Int32, Int32 | Nil, String, String | Nil, UInt64, Time}, query, params).rows
-        rows.map { |row| Page.new(*row) }
+        rows = db.exec({Int32, Int32 | Nil, String, String | Nil, Int64, Time}, query, params).rows
+        rows.map { |row| Upload.new(*row) }
       end
     end
 

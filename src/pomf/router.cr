@@ -3,11 +3,12 @@ module Pomf
     get "/", "PageController#home"
     get "/register", "PageController#register"
     get "/login", "PageController#login"
-    get "/pages/:slug", "PageController#pages"
+    get "/files", "PageController#files"
 
     post "/upload(.php)", "UploadController#do_upload"
     post "/login", "UserController#do_login"
     post "/register", "UserController#do_register"
+    post "/files", "PageController#do_files"
 
     # admin panel
     group "/admin" do
@@ -25,6 +26,11 @@ module Pomf
         get "/edit/:slug", "AdminPageController#users_edit"
 
         post "/edit/:slug", "AdminActionController#users_edit"
+      end
+
+      group "/files" do
+        get "/", "AdminPageController#files"
+        post "/", "AdminActionController#files"
       end
     end
 

@@ -13,13 +13,10 @@ module Pomf
 
     def do_upload
       user = logged_in_user.try { |token| Models::User.where("id = $1", [token["id"]]) }
-      if user
-        upload_dir = File.join(Pomf.upload_dir, user.username)
-      else
-        upload_dir = Pomf.upload_dir
-      end
 
-      files = [] of {name: String?, url: String, hash: String, size: UInt64}
+      upload_dir = Pomf.upload_dir
+
+      files = [] of {name: String?, url: String, hash: String, size: Int64}
       HTTP::FormData.parse(context.request) do |mp|
         mp.file("files[]") do |io, metadata|
           file_name = unique_filename(metadata)
@@ -28,16 +25,13 @@ module Pomf
           size, hash = write_file(file_path, io)
 
           url = URI.parse Pomf.upload_url
-          pp url.to_s
-          if user2 = user
-            url.path = "/#{user2.username}/#{file_name}"
-          else
-            url.path = "/#{file_name}"
-          end
+
+          url.path = "/#{file_name}"
+
           url = url.to_s
 
-          Models::Upload.new(file_name, size, metadata.filename, user).create!
-          files << {name: metadata.filename, url: url.to_s, hash: hash, size: size}
+          Models::Upload.new(file_name, size.to_i64, metadata.filename, user).create!
+          files << {name: metadata.filename, url: url.to_s, hash: hash, size: size.to_i64}
         end
       end
 
@@ -70,7 +64,7 @@ module Pomf
         while (read_bytes = io.read(buffer)) > 0
           data = buffer[0, read_bytes]
           digest << data
-          file << data
+          file.write(data)
           size += read_bytes
         end
       end

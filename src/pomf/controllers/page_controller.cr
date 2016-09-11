@@ -11,27 +11,81 @@ module Pomf
     def register
       if !logged_in_user.nil?
         Util.redirect("/")
+      else
+        @title = "Sign Up"
+
+        errors = [] of String
+        password = email = username = nil
+
+        render "pages/register"
       end
-
-      @title = "Sign Up"
-
-      errors = [] of String
-      password = email = username = nil
-
-      render "pages/register"
     end
 
     def login
       if !logged_in_user.nil?
         Util.redirect("/")
+      else
+        @title = "Sign In"
+
+        errors = [] of String
+        password = email = nil
+
+        render "pages/login"
       end
+    end
 
-      @title = "Sign In"
+    def files
+      if logged_in_user.nil?
+        Util.redirect("/login")
+      else
+        @title = "My Files"
 
-      errors = [] of String
-      password = email = nil
+        url = URI.parse Pomf.upload_url
+        url = url.to_s
 
-      render "pages/login"
+        files = Models::Upload.where_multi("user_id=$1", [logged_in_user.not_nil!["id"]])
+
+        render "pages/files"
+      end
+    end
+
+    def do_files
+      if logged_in_user.nil?
+        Util.redirect("/login")
+      else
+        managing = params.fetch_all("manage")
+        method = params["action"]
+
+        managing = managing.map { |id| id.to_i32 }
+
+        case method
+        when "delete"
+          files_for_deleting = Models::Upload.where_multi("user_id=$1 AND id = ANY($2::INT[])", [logged_in_user.not_nil!["id"], "{#{managing.join(",")}}"])
+
+          file_ids_for_deleting = [] of Int32
+          file_names_for_deleting = [] of String
+
+          upload_dir = Pomf.upload_dir
+
+          files_for_deleting.each do |file|
+            file_ids_for_deleting << file.id
+
+            file = File.join(upload_dir, file.filename)
+
+            if File.exists?(file)
+              File.delete(file)
+            end
+          end
+
+          Pomf.db.connection do |db|
+            db.exec("DELETE FROM uploads WHERE user_id=$1 AND id = ANY($2::INT[])", [logged_in_user.not_nil!["id"], "{#{file_ids_for_deleting.join(",")}}"])
+          end
+
+          Util.redirect("/files")
+        else
+          Util.redirect("/login")
+        end
+      end
     end
 
     def pages
@@ -44,9 +98,17 @@ module Pomf
 
       page = Models::Page.where("slug = $1", [slug])
 
-      @title = page.title
+      if !page.nil?
+        @title = page.not_nil!.title
 
-      render "pages/page"
+        render "pages/page"
+      else
+        @title = "404"
+
+        context.response.status_code = 404
+
+        render "pages/404"
+      end
     end
   end
 end

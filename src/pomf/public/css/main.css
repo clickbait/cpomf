@@ -155,6 +155,17 @@ body.is-dragover .above_fold .inner_bg {
 #upload-list li:not(:first-of-type) {
   margin-top: 15px;
 }
+
+#upload-list a {
+  color: #ce98da;
+  text-decoration: underline;
+}
+
+#upload-list p {
+  display: inline-block;
+  margin: 0;
+}
+
 #upload-list li b {
   color: #ce98da;
   float: right;
@@ -224,15 +235,20 @@ body.is-dragover .above_fold .inner_bg {
   margin-top: 5px;
 }
 
-.page .form_boxed button {
+.page button {
   background: transparent;
   border: 1px solid #ce98da;
   color: #ce98da;
   text-transform: uppercase;
-  display: block;
-  width: 100%;
-  padding: 5px 0;
+  display: inline-block;
+  padding: 5px 10px;
   margin: 30px 0 0 0;
+}
+
+.page .form_boxed button {
+  width: 100%;
+  display: block;
+  padding: 5px 0;
 }
 
 .page.single {
@@ -241,7 +257,19 @@ body.is-dragover .above_fold .inner_bg {
   margin-top: 120px;
 }
 
+.page.single a {
+  color: #ce98da;
+}
+
 .page.single h2 {
   font-size: 24px;
   margin-bottom: 20px;
+}
+
+.page.single table {
+  width: 100%;
+}
+
+.page.single table tr:not(:last-of-type) td {
+  padding-bottom: 5px;
 }
