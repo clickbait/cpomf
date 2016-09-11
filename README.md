@@ -6,15 +6,14 @@ pomf backend written in crystal for pomf.is
 
 Set your environment variables:
 
-`POMF_PORT` - The port that cpomf listens to.
-`POMF_DEBUG` - Whether or not cpomf is in debug mode true|false
-`POMF_DATABASE_URL` - The postgres URL for your database, eg; `postgres://localhost/pomf_database`
-`POMF_SECRET_KEY` - Your secret key; preferably something that's long and randomly generated.
-`POMF_ADMINS` - A comma seperated list of admin usernames; keeping in mind that usernames are lowercase and alphanumeric only.
-`POMF_BLACKLISTED_NAMES` - A comma seperated list of banned usernames; it's usually good to blacklist names like admin or anything else you don't want users to use.
-`POMF_UPLOAD_DIR` - Relative path to your pomf upload directory.
-`POMF_UPLOAD_URL` - The upload URL for your site; eg. `https://u.pomf.is/`
-```
+- `POMF_PORT` - The port that cpomf listens to.
+- `POMF_DEBUG` - Whether or not cpomf is in debug mode true|false
+- `POMF_DATABASE_URL` - The postgres URL for your database, eg; `postgres://localhost/pomf_database`
+- `POMF_SECRET_KEY` - Your secret key; preferably something that's long and randomly generated.
+- `POMF_ADMINS` - A comma seperated list of admin usernames; keeping in mind that usernames are lowercase and alphanumeric only.
+- `POMF_BLACKLISTED_NAMES` - A comma seperated list of banned usernames; it's usually good to blacklist names like admin or anything else you don't want users to use.
+- `POMF_UPLOAD_DIR` - Relative path to your pomf upload directory.
+- `POMF_UPLOAD_URL` - The upload URL for your site; eg. `https://u.pomf.is/`
 
 Compile the project with `crystal build --release pomf.cr`
 
