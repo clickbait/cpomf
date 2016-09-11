@@ -25,7 +25,7 @@ html
             li
               a href="/admin/users/" Users
             li
-              a href="#" Files
+              a href="/admin/files/" Files
             li
               a href="/admin/pages/" Pages
     .body
