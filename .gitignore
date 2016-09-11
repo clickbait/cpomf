@@ -6,3 +6,5 @@
 /config/production*.env
 /mschematool_config.pyc
 /migration.log
+
+/uploads/
