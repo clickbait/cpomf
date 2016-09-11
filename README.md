@@ -4,6 +4,11 @@ pomf backend written in crystal for pomf.is
 
 ## Installation
 
+### Prerequisites
+- Postgres
+- Mschematool
+
+### Setup
 Set your environment variables:
 
 - `POMF_PORT` - The port that cpomf listens to.
@@ -15,6 +20,10 @@ Set your environment variables:
 - `POMF_UPLOAD_DIR` - Relative path to your pomf upload directory.
 - `POMF_UPLOAD_URL` - The upload URL for your site; eg. `https://u.pomf.is/`
 
+Configure `mschematool_config.py` with accurate postgres settings.
+
+Run `mschematool default init_db` and then `mschematool default sync`
+
 Compile the project with `crystal build --release pomf.cr`
 
 ## Usage
@@ -25,6 +34,7 @@ Use a nginx reverse proxy to cpomf; and use nginx to handle static files, includ
 
 Please make sure that you modify the default templates and styles before you host your own clone; I've left nya.is' designs in as a reference, but being unique is king in a sea of clones.
 
+Make sure you create your account before you release your site.
 
 ## Contributing
 
