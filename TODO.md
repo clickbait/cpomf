@@ -4,26 +4,26 @@ TODO
   - [X] Home
     - [X] Uploader
       - [X] Drag & Drop
-      - [ ] Handle responses from backend
+      - [X] Handle responses from backend
     - [X] UI/UX
 - [X] Backend
   - [X] Admin panel
     - [X] User manager 
     - [X] Page manager
-    - [ ] Upload manager
+    - [X] Upload manager - _could probably be a bit nicer though_
   - [X] Users
     - [X] Register
     - [X] Log in
     - [ ] Manage details
     - [ ] Edit settings
-    - [ ] Manage uploads
-  - [ ] Handle Uploads (dependant on https://github.com/crystal-lang/crystal/issues/1989)
-    - [ ] Handle user subdomains
+    - [x] Manage uploads
+      - [ ] Folders
+  - [X] Handle Uploads (dependant on https://github.com/crystal-lang/crystal/issues/1989)
     - [ ] Temporary file hosting
     - [ ] Encrypted file hosting
-    - [ ] Automated gunzipping to optimise storage space
   - [ ] Store file hashes in redis
-  - [ ] Handle file deletion
-  - [ ] Full compatibility with Pomf API
+  - [X] Handle file deletion
+    - [ ] Removing files from cloudflare cache
+  - [X] Full compatibility with Pomf API
   
   
