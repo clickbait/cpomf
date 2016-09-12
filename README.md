@@ -7,6 +7,7 @@ pomf backend written in crystal for pomf.is
 ### Prerequisites
 - Postgres
 - Mschematool
+- Crystal built with the WIP multipart branch
 
 ### Setup
 Set your environment variables:
