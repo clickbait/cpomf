@@ -50,42 +50,7 @@ module Pomf
     end
 
     def do_files
-      if logged_in_user.nil?
-        Util.redirect("/login")
-      else
-        managing = params.fetch_all("manage")
-        method = params["action"]
-
-        managing = managing.map { |id| id.to_i32 }
-
-        case method
-        when "delete"
-          files_for_deleting = Models::Upload.where_multi("user_id=$1 AND id = ANY($2::INT[])", [logged_in_user.not_nil!["id"], "{#{managing.join(",")}}"])
-
-          file_ids_for_deleting = [] of Int32
-          file_names_for_deleting = [] of String
-
-          upload_dir = Pomf.upload_dir
-
-          files_for_deleting.each do |file|
-            file_ids_for_deleting << file.id
-
-            file = File.join(upload_dir, file.filename)
-
-            if File.exists?(file)
-              File.delete(file)
-            end
-          end
-
-          Pomf.db.connection do |db|
-            db.exec("DELETE FROM uploads WHERE user_id=$1 AND id = ANY($2::INT[])", [logged_in_user.not_nil!["id"], "{#{file_ids_for_deleting.join(",")}}"])
-          end
-
-          Util.redirect("/files")
-        else
-          Util.redirect("/login")
-        end
-      end
+      Util.redirect("/files")
     end
 
     def pages
