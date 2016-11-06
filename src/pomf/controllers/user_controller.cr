@@ -50,6 +50,13 @@ module Pomf
 
       if errors.empty?
         user = Models::User.new(params["username"], params["password"], params["email"]).create!
+
+        token = JWT.encode({ "id" => user.id, "username" => user.username }, ENV["POMF_SECRET_KEY"], "HS256")
+
+        cookies = HTTP::Cookies.new
+        cookies << HTTP::Cookie.new("auth", token)
+        cookies.add_response_headers(context.response.headers)
+
         Util.redirect("/")
       else
         render "pages/register"
