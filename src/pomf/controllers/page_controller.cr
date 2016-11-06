@@ -3,7 +3,7 @@ module Pomf
     include Util::Controller
 
     def home
-      @title = "Weeb File Hosting"
+      @title = "Catgirl File Hosting"
 
       render "pages/home"
     end
