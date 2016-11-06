@@ -29,7 +29,7 @@ module Pomf
       end
 
       if errors.empty? && !user.nil?
-        token = JWT.encode({ "id" => user.id, "username" => user.username }, ENV["POMF_SECRET_KEY"], "HS256")
+        token = JWT.encode({"id" => user.id, "username" => user.username}, ENV["POMF_SECRET_KEY"], "HS256")
 
         cookies = HTTP::Cookies.new
         cookies << HTTP::Cookie.new("auth", token)
@@ -51,7 +51,7 @@ module Pomf
       if errors.empty?
         user = Models::User.new(params["username"], params["password"], params["email"]).create!
 
-        token = JWT.encode({ "id" => user.id, "username" => user.username }, ENV["POMF_SECRET_KEY"], "HS256")
+        token = JWT.encode({"id" => user.id, "username" => user.username}, ENV["POMF_SECRET_KEY"], "HS256")
 
         cookies = HTTP::Cookies.new
         cookies << HTTP::Cookie.new("auth", token)
@@ -61,7 +61,6 @@ module Pomf
       else
         render "pages/register"
       end
-
     end
   end
 end

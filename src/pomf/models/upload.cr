@@ -55,7 +55,7 @@ module Pomf::Models
 
       Pomf.db.connection do |db|
         result = db.exec({Int32}, "INSERT INTO uploads (user_id, filename, original_filename, size, created) VALUES ($1, $2, $3, $4, $5) RETURNING id", [
-          @user_id, @filename, @original_filename, @size, @created
+          @user_id, @filename, @original_filename, @size, @created,
         ])
 
         @id = result.rows.first[0]

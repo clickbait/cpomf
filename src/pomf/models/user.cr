@@ -54,7 +54,7 @@ module Pomf::Models
 
       Pomf.db.connection do |db|
         result = db.exec({Int32}, "INSERT INTO users (username, password_bcrypt, email, access_token) VALUES ($1, $2, $3, $4) RETURNING id", [
-          @username, @password.to_s, @email, @access_token
+          @username, @password.to_s, @email, @access_token,
         ])
 
         @id = result.rows.first[0]

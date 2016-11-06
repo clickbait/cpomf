@@ -2,13 +2,13 @@ module Pomf
   class UploadController
     include Util::Controller
 
-    CHARS = "abcdefghijklmnopqrstuvwxyz".chars
+    CHARS        = "abcdefghijklmnopqrstuvwxyz".chars
     COMPLEX_EXTS = [
       "tar.gz",
       "tar.bz",
       "tar.bz2",
       "tar.xz",
-      "user.js"
+      "user.js",
     ]
 
     def do_upload

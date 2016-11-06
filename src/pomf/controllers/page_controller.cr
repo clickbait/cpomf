@@ -38,7 +38,6 @@ module Pomf
       if logged_in_user.nil?
         Util.redirect("/login")
       else
-
         user = logged_in_user.try { |token| Models::User.where("id = $1", [token["id"]]) }
 
         @title = "My Files"
