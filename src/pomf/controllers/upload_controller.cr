@@ -14,7 +14,7 @@ module Pomf
     def do_upload
       user = logged_in_user.try { |token| Models::User.where("id = $1", [token["id"]]) }
 
-      if !user && params["token"]
+      if !user && params["token"]?
         Pomf.db.connection do |db|
           fetch_user = db.exec("SELECT FROM users WHERE access_token = $1", [params["token"]]).rows
 
