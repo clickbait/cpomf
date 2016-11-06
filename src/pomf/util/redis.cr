@@ -1,4 +1,4 @@
-module Util
+module Pomf::Util
   def self.cache(key : String)
     Pomf.redis.connection do |redis|
       val = redis.get(key)

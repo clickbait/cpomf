@@ -1,6 +1,7 @@
 require "crouter"
 require "jwt"
 require "redis"
+require "multipart"
 require "pg"
 require "pool/connection"
 require "http/server"

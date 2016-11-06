@@ -10,7 +10,11 @@ shards:
 
   jwt:
     github: greyblake/crystal-jwt
-    version: 0.1.1
+    commit: 0d9576bace61f5730cb3b3602df711528250379a
+
+  multipart:
+    github: RX14/multipart.cr
+    version: 0.1.0
 
   pg:
     github: will/crystal-pg
@@ -26,11 +30,11 @@ shards:
 
   redis:
     github: stefanwille/crystal-redis
-    version: 1.6.5
+    version: 1.6.7
 
   slang:
     github: jeromegn/slang
-    version: 1.3.1
+    commit: 0a89a48dc58a550a2b4a12a7fba8030e94b8717f
 
   spec2:
     github: waterlink/spec2.cr

@@ -17,8 +17,8 @@ module Pomf
       upload_dir = Pomf.upload_dir
 
       files = [] of {name: String?, url: String, hash: String, size: Int64}
-      HTTP::FormData.parse(context.request) do |mp|
-        mp.file("files[]") do |io, metadata|
+      HTTP::FormData.parse(context.request) do |field, io, metadata|
+        if field == "files[]"
           file_name = unique_filename(metadata)
           file_path = File.join(upload_dir, file_name)
 
