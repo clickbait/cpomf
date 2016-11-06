@@ -49,11 +49,8 @@ module Pomf
         sharex_code = "{
   \"Name\": \"Nya Beta\",
   \"RequestType\": \"POST\",
-  \"RequestURL\": \"https://nya.is/upload\",
+  \"RequestURL\": \"https://nya.is/upload?token=#{user.not_nil!.access_token}\",
   \"FileFormName\": \"files[]\",
-  \"Arguments\": {
-    \"token\": \"#{user.not_nil!.access_token}\"
-  },
   \"ResponseType\": \"Text\"
 }"
 
