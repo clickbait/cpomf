@@ -273,3 +273,13 @@ body.is-dragover .above_fold .inner_bg {
 .page.single table tr:not(:last-of-type) td {
   padding-bottom: 5px;
 }
+
+.codeblock {
+  width: 100%;
+  background: #222;
+  color: #888;
+  border: none;
+  padding: 15px;
+  font-size: 12px;
+  font-family: monospace;
+}

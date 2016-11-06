@@ -1,0 +1,1 @@
+ALTER TABLE users ADD COLUMN access_token text NOT NULL DEFAULT 0;

@@ -38,10 +38,25 @@ module Pomf
       if logged_in_user.nil?
         Util.redirect("/login")
       else
+
+        user = logged_in_user.try { |token| Models::User.where("id = $1", [token["id"]]) }
+
         @title = "My Files"
 
         url = URI.parse Pomf.upload_url
         url = url.to_s
+
+        # fuck i hate this
+        sharex_code = "{
+  \"Name\": \"Nya Beta\",
+  \"RequestType\": \"POST\",
+  \"RequestURL\": \"https://nya.is/upload\",
+  \"FileFormName\": \"files[]\",
+  \"Arguments\": {
+    \"token\": \"#{user.not_nil!.access_token}\"
+  },
+  \"ResponseType\": \"Text\"
+}"
 
         files = Models::Upload.where_multi("user_id=$1", [logged_in_user.not_nil!["id"]])
 

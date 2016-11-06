@@ -14,6 +14,16 @@ module Pomf
     def do_upload
       user = logged_in_user.try { |token| Models::User.where("id = $1", [token["id"]]) }
 
+      if !user && params["token"]
+        Pomf.db.connection do |db|
+          fetch_user = db.exec("SELECT FROM users WHERE access_token = $1", [params["token"]]).rows
+
+          if fetch_user.size > 0
+            user = Models::User.where("access_token = $1", [params["token"]])
+          end
+        end
+      end
+
       upload_dir = Pomf.upload_dir
 
       files = [] of {name: String?, url: String, hash: String, size: Int64}
