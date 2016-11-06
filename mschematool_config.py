@@ -1,4 +1,4 @@
-import os.path
+import os
 
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -6,7 +6,7 @@ DATABASES = {
     'default': {
         'migrations_dir': os.path.join(BASE_DIR, "migrations"),
         'engine': 'postgres',
-        'dsn': 'host=localhost dbname=pomf_dev user=croncat sslmode=disable',
+        'dsn': os.environ['POMF_DATABASE_URL'],
     }
 }
 
