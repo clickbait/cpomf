@@ -1,4 +1,4 @@
-module Util
+module Pomf::Util
   module User
     def self.logged_in_user(context)
       if context.request.cookies.has_key? "auth"
