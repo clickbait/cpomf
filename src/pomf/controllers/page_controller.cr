@@ -52,7 +52,7 @@ module Pomf
   \"RequestURL\": \"https://nya.is/upload?token=#{user.not_nil!.access_token}\",
   \"FileFormName\": \"files[]\",
   \"ResponseType\": \"Text\",
-  \"URL\": \"$json:files[0].url$"
+  \"URL\": \"$json:files[0].url$\"
 }"
 
         files = Models::Upload.where_multi("user_id=$1", [logged_in_user.not_nil!["id"]])
