@@ -20,7 +20,7 @@ html
               == "<i class=\"fa fa-paw\" aria-hidden=\"true\"></i>nya<i>.is</i>"
           ul
             li
-              a href="/" Home
+              a href="/" Upload
             li
               a href="/faq" FAQ
             li
