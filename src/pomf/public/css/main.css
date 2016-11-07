@@ -103,7 +103,7 @@ header.scroll {
   line-height: 50px;
 }
 .above_fold {
-  background: #222 url("/public/images/backgrounds/background-1.png");
+  background: #222 url("/public/images/backgrounds/background-1.jpg");
   background-size: cover;
   background-position: 50% 0%;
   height: 100vh;
