@@ -15,4 +15,4 @@ form action="/login" method="post"
         input type="password" id="password" name="password" value=password
 
       #button
-        button type="submit" Create Account
+        button type="submit" Sign In
