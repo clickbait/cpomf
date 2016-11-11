@@ -28,7 +28,7 @@ module Pomf::Util
         errors << "Username is invalid or blacklisted."
       else
         Pomf.db.connection do |db|
-          count = db.exec("SELECT FROM users WHERE username = $1 AND id != $2", [username, id]).rows.size
+          count = db.exec("SELECT FROM users WHERE lower(username) = $1 AND id != $2", [username.downcase, id]).rows.size
 
           if count > 0
             errors << "Username is already taken."
