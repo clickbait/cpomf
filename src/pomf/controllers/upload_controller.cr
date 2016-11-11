@@ -11,6 +11,15 @@ module Pomf
       "user.js",
     ]
 
+    BLACKLISTED_EXTS = [
+      "exe",
+      "scr",
+      "vbs",
+      "bat",
+      "cmd",
+      "msi"
+    ]
+
     def do_upload
       user = logged_in_user.try { |token| Models::User.where("id = $1", [token["id"]]) }
 
@@ -29,7 +38,16 @@ module Pomf
       files = [] of {name: String?, url: String, hash: String, size: Int64}
       HTTP::FormData.parse(context.request) do |field, io, metadata|
         if field == "files[]"
+
           file_name = unique_filename(metadata)
+
+          if BLACKLISTED_EXTS.includes?(extension(file_name))
+            context.response.content_type = "application/json"
+            context.response.status_code = 500
+            {success: false, errorcode: 500, description: "File type not allowed."}.to_json(context.response)
+            return
+          end
+
           file_path = File.join(upload_dir, file_name)
 
           size, hash = write_file(file_path, io)
