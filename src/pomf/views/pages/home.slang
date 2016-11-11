@@ -5,6 +5,7 @@ main.above_fold
 .uploads#upload-container
   .wrapper
     h2 Your Uploads
+    ul#errors
     ul#upload-list
     pre#console
 

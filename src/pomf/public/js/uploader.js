@@ -9,8 +9,10 @@ var scrolled_once = false;
 uploader.init();
 
 uploader.bind('FilesAdded', function(up, files) {
-    console.log("fired filesadded");
     var html = '';
+
+    document.getElementById('errors').innerHTML = '';
+
     plupload.each(files, function(file) {
         name_truncated = file.name;
         if (file.name.length > 24) {
@@ -35,13 +37,18 @@ uploader.bind('UploadProgress', function(up, file) {
 });
 
 uploader.bind('Error', function(up, err) {
-    document.getElementById('console').innerHTML += "\nError #" + err.code + ": " + err.message;
+    response = JSON.parse(err.response)
+
+    file = err.file
+
+    file_name = document.getElementById(file.id).getElementsByTagName('p')[0].innerHTML;
+
+    document.getElementById(file.id).getElementsByTagName('p')[0].innerHTML = '<span class="error" title="' + response.description + '">' + file_name + '</span>';
+    document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span class="error"><i class="fa fa-times" title="' + response.description + '"></i></span>';
 });
 
 uploader.bind('FileUploaded', function (up, file, response) {
     file_name = document.getElementById(file.id).getElementsByTagName('p')[0].innerHTML;
-
-    console.log(file_name)
 
     url = JSON.parse(response.response).files[0].url
 

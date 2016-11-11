@@ -145,6 +145,9 @@ body.is-dragover .above_fold .inner_bg {
   margin-bottom: 30px;
   text-align: center;
 }
+.uploads .error {
+  color: #f00 !important;
+}
 #upload-list {
   margin: 0 auto;
   max-width: 400px;
