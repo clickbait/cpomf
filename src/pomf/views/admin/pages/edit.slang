@@ -13,7 +13,7 @@ form action="" method="post"
 
     div.fieldset
       label for="content" Content
-      == "<textarea id=\"content\" name=\"content\">#{page.not_nil!.content}</textarea>"
+      textarea id="content" name="content"= page.not_nil!.content
 
     #button
       button type="submit" Save Page
