@@ -41,7 +41,7 @@ module Pomf::Models
       raise "Record has not been created" if @id == -1
 
       Pomf.db.connection do |db|
-        db.exec("UPDATE users SET (username, password_bcrypt, email, access_token) = ($1, $2, $3, $4) WHERE id = $4", [
+        db.exec("UPDATE users SET (username, password_bcrypt, email, access_token) = ($1, $2, $3, $5) WHERE id = $4", [
           @username, @password.to_s, @email, @id, @access_token,
         ])
       end
