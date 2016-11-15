@@ -17,7 +17,7 @@ module Pomf
       end
 
       if errors.empty?
-        user = Models::User.where("lower(email) = $1", [email.downcase])
+        user = Models::User.where("lower(email) = $1", [email.not_nil!.downcase])
 
         if user.nil?
           errors << "Email or Password does not match."
