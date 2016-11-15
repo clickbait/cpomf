@@ -1,4 +1,4 @@
-form action="/login" method="post"
+form#login action="/login" method="post"
   main.page.flex
     div.form_boxed
       h2 Sign In

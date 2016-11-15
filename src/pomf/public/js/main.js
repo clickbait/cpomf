@@ -6,3 +6,9 @@ $(window).scroll(function() {
       $("header").removeClass("scroll");
     }
 });
+
+$(function() {
+  $('form#login, form#registration').on('submit', function(e){
+    $(this).find('button[type=submit]').prop('disabled', true);
+  });
+});

@@ -1,4 +1,4 @@
-form action="/register" method="post"
+form#registration action="/register" method="post"
   main.page.flex
     div.form_boxed
       h2 Sign Up

@@ -286,3 +286,7 @@ body.is-dragover .above_fold .inner_bg {
   font-size: 12px;
   font-family: monospace;
 }
+
+button[disabled] {
+  opacity: 0.6;
+}
