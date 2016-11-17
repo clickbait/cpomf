@@ -17,8 +17,9 @@ module Pomf::Models
     def self.where(query : String, params = [] of Nil)
       Pomf.db.connection do |db|
         query = "SELECT id, username, password_bcrypt, email, access_token FROM users WHERE #{query} LIMIT 1"
-        row = db.exec({Int32, String, String, String, String}, query, params).rows.first
-        User.new(*row)
+        rows = db.exec({Int32, String, String, String, String}, query, params).rows
+
+        !rows.empty? ? User.new(*rows.first) : nil
       end
     end
 
