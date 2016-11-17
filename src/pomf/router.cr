@@ -48,6 +48,18 @@ module Pomf
       }
     end
 
-    get "/:slug", "PageController#pages"
+    get "/:slug", ->(context : HTTP::Server::Context, params : HTTP::Params) {
+      if "u.nya.is" != context.request.headers["Host"] # remove hardcoding
+        page_handler = PageController.new(context, params)
+        page_handler.pages
+      else
+        params["filename"] = params["slug"]
+        file_handler = FileController.new(context, params)
+        file_handler.view
+      end
+      nil
+    }
+
+    post "/:filename", "FileController#fetch"
   end
 end

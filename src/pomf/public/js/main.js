@@ -8,7 +8,7 @@ $(window).scroll(function() {
 });
 
 $(function() {
-  $('form#login, form#registration').on('submit', function(e){
+  $('form#login, form#registration, form#download').on('submit', function(e){
     $(this).find('button[type=submit]').prop('disabled', true);
   });
 });
