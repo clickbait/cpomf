@@ -49,13 +49,11 @@ module Pomf
     end
 
     get "/:slug", ->(context : HTTP::Server::Context, params : HTTP::Params) {
-      if "u.nya.is" != context.request.headers["Host"] # remove hardcoding
-        page_handler = PageController.new(context, params)
-        page_handler.pages
-      else
+      if context.request.headers["Host"]? == Pomf.upload_host
         params["filename"] = params["slug"]
-        file_handler = FileController.new(context, params)
-        file_handler.view
+        FileController.new(context, params).view
+      else
+        PageController.new(context, params).pages
       end
       nil
     }
