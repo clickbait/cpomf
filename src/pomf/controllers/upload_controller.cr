@@ -41,7 +41,7 @@ module Pomf
 
           file_name = unique_filename(metadata)
 
-          if BLACKLISTED_EXTS.includes?(extension(file_name))
+          if BLACKLISTED_EXTS.includes?(extension(file_name.downcase))
             context.response.content_type = "application/json"
             context.response.status_code = 500
             {success: false, errorcode: 500, description: "File type not allowed."}.to_json(context.response)

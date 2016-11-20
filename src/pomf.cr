@@ -64,6 +64,16 @@ module Pomf
     @@upload_url ||= ENV["POMF_UPLOAD_URL"]
   end
 
+  @@upload_host : String?
+
+  def self.upload_host
+    @@upload_host ||= URI.parse(upload_url).host
+  end
+
+  def self.url
+    @@url ||= ENV["POMF_URL"]
+  end
+
   def self.run
     handlers = [] of HTTP::Handler
 

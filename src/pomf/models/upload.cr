@@ -22,8 +22,9 @@ module Pomf::Models
     def self.where(query : String, params = [] of Nil)
       Pomf.db.connection do |db|
         query = "SELECT id, user_id, filename, original_filename, size, created FROM uploads WHERE #{query} LIMIT 1"
-        row = db.exec({Int32, Int32 | Nil, String, String | Nil, Int64, Time}, query, params).rows.first
-        Upload.new(*row)
+        rows = db.exec({Int32, Int32 | Nil, String, String | Nil, Int64, Time}, query, params).rows
+
+        !rows.empty? ? Upload.new(*rows.first) : nil
       end
     end
 

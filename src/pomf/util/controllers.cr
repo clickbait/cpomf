@@ -3,6 +3,9 @@ module Pomf::Util
     private getter context : HTTP::Server::Context, params : HTTP::Params
 
     def initialize(@context, @params)
+      if context.request.headers["Host"]? == Pomf.upload_host
+        Util.redirect(Pomf.url)
+      end
     end
 
     def logged_in_user
@@ -40,6 +43,13 @@ module Pomf::Util
 
     private def __default_template(child)
       Slang.embed(__DIR__ + "/../views/admin.template.slang", "context.response")
+    end
+  end
+
+  module FileController
+    include Util::Controller
+
+    def initialize(@context, @params)
     end
   end
 end

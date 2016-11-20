@@ -13,31 +13,30 @@ module Pomf
 
       if user.nil?
         Util.redirect("/admin/users")
-      end
-
-      if !params["password"].empty?
-        password = params["password"]
       else
-        password = nil
-      end
-
-      errors = Util.validate(params["email"], password, params["username"], user.id)
-
-      @title = "Editing #{user.username}"
-
-      if !errors.empty?
-        render "admin/users/edit"
-      else
-        puts params["username"]
-        user.username = params["username"].downcase
-        user.email = params["email"].downcase
         if !params["password"].empty?
-          user.password = params["password"]
+          password = params["password"]
+        else
+          password = nil
         end
 
-        user.save
+        errors = Util.validate(params["email"], password, params["username"], user.not_nil!.id)
 
-        Util.redirect("/admin/users")
+        @title = "Editing #{user.not_nil!.username}"
+
+        if !errors.empty?
+          render "admin/users/edit"
+        else
+          user.not_nil!.username = params["username"].downcase
+          user.not_nil!.email = params["email"].downcase
+          if !params["password"].empty?
+            user.not_nil!.password = params["password"]
+          end
+
+          user.not_nil!.save
+
+          Util.redirect("/admin/users")
+        end
       end
     end
 

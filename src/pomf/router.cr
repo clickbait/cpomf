@@ -48,6 +48,16 @@ module Pomf
       }
     end
 
-    get "/:slug", "PageController#pages"
+    get "/:slug", ->(context : HTTP::Server::Context, params : HTTP::Params) {
+      if context.request.headers["Host"]? == Pomf.upload_host
+        params["filename"] = params["slug"]
+        FileController.new(context, params).view
+      else
+        PageController.new(context, params).pages
+      end
+      nil
+    }
+
+    post "/:filename", "FileController#fetch"
   end
 end

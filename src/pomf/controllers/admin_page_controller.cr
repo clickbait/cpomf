@@ -27,13 +27,13 @@ module Pomf
 
       if user.nil?
         Util.redirect("/admin/users")
+      else
+        errors = [] of String
+
+        @title = "Editing #{user.username}"
+
+        render "admin/users/edit"
       end
-
-      errors = [] of String
-
-      @title = "Editing #{user.username}"
-
-      render "admin/users/edit"
     end
 
     def files

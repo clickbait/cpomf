@@ -9,12 +9,12 @@ form action="" method="post"
 
     div.fieldset
       label for="username" Username
-      input type="text" id="username" name="username" value=user.username
+      input type="text" id="username" name="username" value=user.not_nil!.username
       p.hint No special characters, only numbers and letters.
 
     div.fieldset
       label for="email" Email
-      input type="email" id="email" name="email" value=user.email
+      input type="email" id="email" name="email" value=user.not_nil!.email
 
     div.fieldset
       label for="password" Password
