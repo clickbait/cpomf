@@ -3,9 +3,8 @@ module Pomf::Util
     private getter context : HTTP::Server::Context, params : HTTP::Params
 
     def initialize(@context, @params)
-      p context.request.headers["Host"]
-      if "u.nya.is" == context.request.headers["Host"] # remove hard coding
-        Util.redirect("https://nya.is/") # remove hard coding?
+      if context.request.headers["Host"]? == Pomf.upload_host
+        Util.redirect(Pomf.url)
       end
     end
 
