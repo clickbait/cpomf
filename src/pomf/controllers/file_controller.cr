@@ -37,7 +37,7 @@ module Pomf
       "webm",
       "webp",
       "wmv",
-      "xml"
+      "xml",
     ]
 
     def view
@@ -63,7 +63,7 @@ module Pomf
 
     def fetch
       if !params["filename"]
-        Util.redirect("https://nya.is/") #remove hardcoding?
+        Util.redirect(Pomf.url)
       else
         if params["g-recaptcha-response"]
           captcha = Util::ReCAPTCHA.validate(params["g-recaptcha-response"])
