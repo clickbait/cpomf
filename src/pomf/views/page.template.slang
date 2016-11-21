@@ -16,15 +16,14 @@ html
       header
         .wrapper
           h1
-            a href="/"
-              == "<i class=\"fa fa-paw\" aria-hidden=\"true\"></i>nya<i>.is</i>"
+            == "<a href=\"#{Util.redirect(Pomf.url)}/\"><i class=\"fa fa-paw\" aria-hidden=\"true\"></i>nya<i>.is</i></a>"
           ul
             li
-              a href="/" Upload
+              == "<a href=\"#{Util.redirect(Pomf.url)}/\">Upload</a>"
             li
-              a href="/faq" FAQ
+              == "<a href=\"#{Util.redirect(Pomf.url)}/faq\">FAQ</a>"
             li
-              a href="/about" About
+              == "<a href=\"#{Util.redirect(Pomf.url)}/about\">About</a>"
             li
-              a href="/contact" Contact
+              == "<a href=\"#{Util.redirect(Pomf.url)}/contact\">Contact</a>"
     - child.call
