@@ -48,7 +48,7 @@ module Pomf
 
     def view
       if !params["filename"]
-        Util.redirect("/")
+        Util.redirect(Pomf.url)
       else
         if WHITELISTED_EXTS.includes?(File.extname(params["filename"])[1..-1].downcase)
           context.response.headers["X-Accel-Redirect"] = "/internal/#{params["filename"]}"
@@ -62,7 +62,7 @@ module Pomf
 
           render "pages/download"
         else
-          Util.redirect("/")
+          Util.redirect(Pomf.url)
         end
       end
     end
