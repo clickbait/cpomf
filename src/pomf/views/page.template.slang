@@ -12,7 +12,8 @@ html
     script type="text/javascript" src="/public/js/main.js"
   body
     .navigation
-      - render "partials/usernav.template"
+      - unless context.request.headers["Host"]? == Pomf.upload_host
+        - render "partials/usernav.template"
       header
         .wrapper
           h1
