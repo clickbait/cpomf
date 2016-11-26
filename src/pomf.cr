@@ -74,6 +74,12 @@ module Pomf
     @@url ||= ENV["POMF_URL"]
   end
 
+  @@home_host : String?
+
+  def self.home_host
+    @@home_host ||= URI.parse(url).host
+  end
+
   def self.run
     handlers = [] of HTTP::Handler
 

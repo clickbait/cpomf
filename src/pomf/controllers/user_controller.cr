@@ -32,7 +32,7 @@ module Pomf
         token = JWT.encode({"id" => user.id, "username" => user.username}, ENV["POMF_SECRET_KEY"], "HS256")
 
         cookies = HTTP::Cookies.new
-        cookies << HTTP::Cookie.new("auth", token)
+        cookies << HTTP::Cookie.new("auth", token, "/", nil, Pomf.home_host)
         cookies.add_response_headers(context.response.headers)
 
         Util.redirect("/")
