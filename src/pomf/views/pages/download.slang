@@ -1,7 +1,7 @@
 script type="text/javascript" src="https://www.google.com/recaptcha/api.js"
 main.page.single
   .wrapper
-    h2= file.not_nil!.original_filename
+    h2= @title
     .content Be cautious when downloading this file, this is the internet, bad people exist; so you should use your anti-virus before running any potentially malicious content.
         br
               form#download method="post"

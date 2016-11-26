@@ -57,12 +57,33 @@ module Pomf
 
         file = Models::Upload.where("filename = $1", [params["filename"]])
 
+        upload_dir = Pomf.upload_dir
+        file_path = File.join(upload_dir, params["filename"])
+
+        if !File.exists?(file_path)
+          @title = "404"
+
+          context.response.status_code = 404
+
+          render "pages/404"
+          return
+        end
+
         if !file.nil?
           @title = file.not_nil!.original_filename
 
           render "pages/download"
+
+        elsif File.exists?(file_path)
+          @title = params["filename"]
+
+          render "pages/download"
         else
-          Util.redirect(Pomf.url)
+          @title = "404"
+
+          context.response.status_code = 404
+
+          render "pages/404"
         end
       end
     end
