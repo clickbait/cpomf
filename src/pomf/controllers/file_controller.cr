@@ -18,6 +18,7 @@ module Pomf
       "js",
       "json",
       "log",
+      "m3u",
       "md",
       "mov",
       "mp3",
