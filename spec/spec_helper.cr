@@ -1,7 +1,6 @@
 require "../src/pomf"
 
 require "spec2"
-require "power_assert"
 
 Spec2.random_order
 Spec2.doc

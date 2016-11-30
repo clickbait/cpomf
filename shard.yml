@@ -7,31 +7,33 @@ authors:
 dependencies:
   crouter:
     github: jreinert/crouter
-    commit: 9ba35f152b52dce45a1f57304192996d3222959f
+    commit: 8a160545ee01a3658f6ecb8fb9bc442171c38445
   CrystalEmail:
     github: Nephos/CrystalEmail
+    branch: master
   jwt:
     github: greyblake/crystal-jwt
-    branch: master
+    version: ~> 0.2.1
   multipart:
     github: RX14/multipart.cr
+    version: ~> 0.1.1
   pg:
     github: will/crystal-pg
-    version: ~> 0.8.0
+    version: ~> 0.11.0
   pool:
     github: ysbaddaden/pool
     version: ~> 0.2.3
   redis:
     github: stefanwille/crystal-redis
-    version: ~> 1.6.5
+    version: ~> 1.6.7
   slang:
     github: jeromegn/slang
     branch: master
 
 development_dependencies:
-  spec2:
-    github: waterlink/spec2.cr
-    version: ~> 0.8
-  power_assert:
-    github: rosylilly/power_assert.cr
-    commit: 7f2d946078a5a678f12bc46c36f71f98ad10a153
+ spec2:
+   github: waterlink/spec2.cr
+   version: ~> 0.9
+ # power_assert:
+ #   github: rosylilly/power_assert.cr
+ #   commit: 7f2d946078a5a678f12bc46c36f71f98ad10a153
