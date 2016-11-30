@@ -290,3 +290,7 @@ body.is-dragover .above_fold .inner_bg {
 button[disabled] {
   opacity: 0.6;
 }
+
+.g-recaptcha {
+  margin-top: 10px;
+}
