@@ -123,7 +123,7 @@ module Pomf
 
     def extension(filename : String)
       COMPLEX_EXTS.each do |ext|
-        return ext if filename.ends_with? ".#{ext}"
+        return ext if filename.downcase.ends_with? ".#{ext}"
       end
 
       File.extname(filename)[1..-1]
