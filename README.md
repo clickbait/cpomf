@@ -23,6 +23,8 @@ Set your environment variables:
 
 Configure `mschematool_config.py` with accurate postgres settings.
 
+Run `shards install` to install dependencies.
+
 Run `mschematool default init_db` and then `mschematool default sync`
 
 Compile the project with `crystal build --release pomf.cr`
