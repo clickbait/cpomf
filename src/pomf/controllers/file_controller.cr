@@ -20,6 +20,7 @@ module Pomf
       "log",
       "m3u",
       "md",
+      "mkv",
       "mov",
       "mp3",
       "mp4",
