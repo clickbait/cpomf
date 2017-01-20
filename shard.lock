@@ -2,19 +2,19 @@ version: 1.0
 shards:
   CrystalEmail:
     github: Nephos/CrystalEmail
-    commit: db353447e731dc01928f767c985417a1bec4cf3d
+    commit: 9840d05a2f625945fcd96f050e2a0da518cf46a2
 
   crouter:
     github: jreinert/crouter
-    commit: 8a160545ee01a3658f6ecb8fb9bc442171c38445
+    commit: 982f0986f9ceb6203742df475066c7ed9da8584c
 
   jwt:
     github: greyblake/crystal-jwt
-    version: 0.2.1
+    version: 0.2.2
 
   multipart:
     github: RX14/multipart.cr
-    version: 0.1.1
+    version: 0.1.2
 
   pg:
     github: will/crystal-pg
@@ -30,9 +30,9 @@ shards:
 
   slang:
     github: jeromegn/slang
-    commit: 0a89a48dc58a550a2b4a12a7fba8030e94b8717f
+    commit: 6f8c5b226758faf73575d02b67a8010f8e10a0ab
 
   spec2:
     github: waterlink/spec2.cr
-    version: 0.9.0
+    commit: ce82b409798d50eaa8f77281b814b1c903264059
 

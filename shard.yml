@@ -7,7 +7,7 @@ authors:
 dependencies:
   crouter:
     github: jreinert/crouter
-    commit: 8a160545ee01a3658f6ecb8fb9bc442171c38445
+    branch: master
   CrystalEmail:
     github: Nephos/CrystalEmail
     branch: master
@@ -33,7 +33,7 @@ dependencies:
 development_dependencies:
  spec2:
    github: waterlink/spec2.cr
-   version: ~> 0.9
+   branch: master
  # power_assert:
  #   github: rosylilly/power_assert.cr
  #   commit: 7f2d946078a5a678f12bc46c36f71f98ad10a153
