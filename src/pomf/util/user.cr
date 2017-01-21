@@ -7,6 +7,8 @@ module Pomf::Util
       else
         nil
       end
+    rescue ex : JWT::Error
+      nil
     end
   end
 end
