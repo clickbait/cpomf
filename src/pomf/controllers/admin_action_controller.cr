@@ -94,7 +94,7 @@ module Pomf
           end
 
           Pomf.db.connection do |db|
-            db.exec("DELETE FROM uploads WHERE user_id=$1 AND id = ANY($2::INT[])", [logged_in_user.not_nil!["id"], "{#{file_ids_for_deleting.join(",")}}"])
+            db.exec("DELETE FROM uploads WHERE id = ANY($1::INT[])", ["{#{file_ids_for_deleting.join(",")}}"])
           end
         end
         Util.redirect("/admin/files")
