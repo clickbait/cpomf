@@ -52,13 +52,29 @@ module Pomf
 
           size, hash = write_file(file_path, io)
 
-          url = URI.parse Pomf.upload_url
+          Pomf.db.connection do |db|
+            file_exists = db.exec("SELECT FROM uploads WHERE hash = $1", [hash]).rows
 
+            if file_exists.size > 0
+              file = Models::Upload.where("hash = $1", [hash])
+
+              if file
+                if File.exists?(File.join(upload_dir, file.filename))
+                  file_name = file.filename
+
+                  if File.exists?(file_path)
+                    File.delete(file_path)
+                  end
+                end
+              end
+            else
+                Models::Upload.new(file_name, size.to_i64, hash, metadata.filename, user).create!
+            end
+          end
+
+          url = URI.parse Pomf.upload_url
           url.path = "/#{file_name}"
 
-          url = url.to_s
-
-          Models::Upload.new(file_name, size.to_i64, metadata.filename, user).create!
           files << {name: metadata.filename, url: url.to_s, hash: hash, size: size.to_i64}
         end
       end
