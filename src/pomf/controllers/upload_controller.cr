@@ -56,7 +56,7 @@ module Pomf
           if user_id
             old_file = Models::Upload.where("user_id = $1 AND hash = $2", [user_id, hash])
           else
-            old_file = Models::Upload.where("hash = $1", [hash])
+            old_file = Models::Upload.where("user_id IS NULL AND hash = $1", [hash])
           end
 
           if old_file
