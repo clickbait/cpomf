@@ -38,7 +38,6 @@ module Pomf
       files = [] of {name: String?, url: String, hash: String, size: Int64}
       HTTP::FormData.parse(context.request) do |field, io, metadata|
         if field == "files[]"
-
           file_name = unique_filename(metadata)
 
           if BLACKLISTED_EXTS.includes?(extension(file_name.downcase))
@@ -52,24 +51,24 @@ module Pomf
 
           size, hash = write_file(file_path, io)
 
-          Pomf.db.connection do |db|
-            file_exists = db.exec("SELECT FROM uploads WHERE hash = $1", [hash]).rows
+          user_id = user.try(&.id)
 
-            if file_exists.size > 0
-              file = Models::Upload.where("hash = $1", [hash])
+          if user_id
+            old_file = Models::Upload.where("user_id = $1 AND hash = $2", [user_id, hash])
+          else
+            old_file = Models::Upload.where("hash = $1", [hash])
+          end
 
-              if file
-                if File.exists?(File.join(upload_dir, file.filename))
-                  file_name = file.filename
+          if old_file
+            if File.exists?(File.join(upload_dir, old_file.filename))
+              file_name = old_file.filename
 
-                  if File.exists?(file_path)
-                    File.delete(file_path)
-                  end
-                end
+              if File.exists?(file_path)
+                File.delete(file_path)
               end
-            else
-                Models::Upload.new(file_name, size.to_i64, hash, metadata.filename, user).create!
             end
+          else
+            Models::Upload.new(file_name, size.to_i64, hash, metadata.filename, user).create!
           end
 
           url = URI.parse Pomf.upload_url
