@@ -75,7 +75,6 @@ module Pomf
           @title = file.not_nil!.original_filename
 
           render "pages/download"
-
         elsif File.exists?(file_path)
           @title = params["filename"]
 

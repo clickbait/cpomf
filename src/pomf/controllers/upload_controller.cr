@@ -17,7 +17,7 @@ module Pomf
       "vbs",
       "bat",
       "cmd",
-      "msi"
+      "msi",
     ]
 
     def do_upload
