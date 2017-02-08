@@ -7,7 +7,7 @@ pomf backend written in crystal for pomf.is
 ### Prerequisites
 - Postgres
 - Mschematool
-- Crystal 0.19.4
+- Crystal 0.20.4
 
 ### Setup
 Set your environment variables:
@@ -20,8 +20,6 @@ Set your environment variables:
 - `POMF_BLACKLISTED_NAMES` - A comma seperated list of banned usernames; it's usually good to blacklist names like admin or anything else you don't want users to use.
 - `POMF_UPLOAD_DIR` - Relative path to your pomf upload directory.
 - `POMF_UPLOAD_URL` - The upload URL for your site; eg. `https://u.pomf.is/`
-
-Configure `mschematool_config.py` with accurate postgres settings.
 
 Run `shards install` to install dependencies.
 
