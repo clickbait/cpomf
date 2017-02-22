@@ -38,8 +38,6 @@ module Pomf
       "psd",
       "sc2replay",
       "sql",
-      "svg",
-      "svgz",
       "tif",
       "tiff",
       "torrent",
@@ -49,6 +47,8 @@ module Pomf
       "webp",
       "wmv",
       "xml",
+      "yaml",
+      "yml",
     ]
 
     def view
