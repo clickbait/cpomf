@@ -19,6 +19,7 @@ Set your environment variables:
 - `POMF_ADMINS` - A comma seperated list of admin usernames; keeping in mind that usernames are lowercase and alphanumeric only.
 - `POMF_BLACKLISTED_NAMES` - A comma seperated list of banned usernames; it's usually good to blacklist names like admin or anything else you don't want users to use.
 - `POMF_UPLOAD_DIR` - Relative path to your pomf upload directory.
+- `POMF_URL` - the root URL of your site; eg. `https://pomf.is/`
 - `POMF_UPLOAD_URL` - The upload URL for your site; eg. `https://u.pomf.is/`
 
 Run `shards install` to install dependencies.
