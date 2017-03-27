@@ -33,6 +33,12 @@ module Pomf
             user.not_nil!.password = params["password"]
           end
 
+          if params["can_upload"]?
+            user.not_nil!.can_upload = true
+          else
+            user.not_nil!.can_upload = false
+          end
+
           user.not_nil!.save
 
           Util.redirect("/admin/users")

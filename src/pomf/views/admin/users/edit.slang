@@ -21,5 +21,12 @@ form action="" method="post"
       input type="password" id="password" name="password"
       p.hint No less than 8 characters long.
 
+    div.fieldset
+      label for="can_upload" Can upload?
+      - if user.not_nil!.can_upload
+        input type="checkbox" id="can_upload" name="can_upload" checked="checked"
+      - else
+        input type="checkbox" id="can_upload" name="can_upload"
+
     #button
       button type="submit" Save User

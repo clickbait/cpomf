@@ -1,6 +1,6 @@
 var uploader = new plupload.Uploader({
     browse_button: 'browse', // this can be an id of a DOM element or the DOM element itself
-    url: 'upload',
+    url: '/upload',
     file_data_name: 'files[]'
 });
 

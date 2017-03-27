@@ -47,11 +47,12 @@ module Pomf
             return
           end
 
+          user_id = user.try(&.id)
+          can_upload = user.try(&.can_upload)
+
           file_path = File.join(upload_dir, file_name)
 
-          size, hash = write_file(file_path, io)
-
-          user_id = user.try(&.id)
+          size, hash = write_file(file_path, io, can_upload)
 
           if user_id
             old_file = Models::Upload.where("user_id = $1 AND hash = $2", [user_id, hash])
@@ -68,13 +69,18 @@ module Pomf
               end
             end
           else
-            Models::Upload.new(file_name, size.to_i64, hash, metadata.filename, user).create!
+            Models::Upload.new(file_name, size.to_i64, hash, metadata.filename, user).create! if can_upload
           end
 
-          url = URI.parse Pomf.upload_url
-          url.path = "/#{file_name}"
 
-          files << {name: metadata.filename, url: url.to_s, hash: hash, size: size.to_i64}
+          if can_upload
+            url = URI.parse Pomf.upload_url
+            url.path = "/#{file_name}"
+
+            files << {name: metadata.filename, url: url.to_s, hash: hash, size: size.to_i64}
+          else
+            files << {name: metadata.filename, url: ENV["POMF_CLOSING_DOWN_URL"], hash: hash, size: size.to_i64}
+          end
         end
       end
 
@@ -98,7 +104,7 @@ module Pomf
       {success: false, errorcode: 500, description: "Internal Server Error"}.to_json(context.response)
     end
 
-    def write_file(file_path, io) : {UInt64, String}
+    def write_file(file_path, io, can_upload) : {UInt64, String}
       digest = OpenSSL::Digest.new("SHA1")
       size = 0_u64
       File.open(file_path, "w") do |file|
@@ -107,7 +113,7 @@ module Pomf
         while (read_bytes = io.read(buffer)) > 0
           data = buffer[0, read_bytes]
           digest << data
-          file.write(data)
+          file.write(data) if can_upload
           size += read_bytes
         end
       end

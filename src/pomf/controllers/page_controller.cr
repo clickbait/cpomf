@@ -2,15 +2,29 @@ module Pomf
   class PageController
     include Util::Controller
 
-    def home
-      @title = "Catgirl File Hosting"
+    def redirect
+      Util.redirect(ENV["POMF_CLOSING_DOWN_URL"])
+    end
 
-      render "pages/home"
+    def home
+      if logged_in_user.nil?
+        Util.redirect("/login")
+      else
+        user = logged_in_user.try { |token| Models::User.where("id = $1", [token["id"]]) }
+
+        if user.not_nil!.can_upload
+          @title = "Catgirl File Hosting"
+
+          render "pages/home"
+        else
+          Util.redirect("/files")
+        end
+      end
     end
 
     def register
       if !logged_in_user.nil?
-        Util.redirect("/")
+        Util.redirect("/upload")
       else
         @title = "Sign Up"
 
@@ -23,7 +37,7 @@ module Pomf
 
     def login
       if !logged_in_user.nil?
-        Util.redirect("/")
+        Util.redirect("/upload")
       else
         @title = "Sign In"
 

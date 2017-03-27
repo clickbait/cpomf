@@ -10,4 +10,4 @@ main.above_fold
     pre#console
 
 script type="text/javascript" src="/public/js/plupload.full.min.js"
-script type="text/javascript" src="/public/js/uploader.js"
+script type="text/javascript" src="/public/js/uploader.js?force_new"

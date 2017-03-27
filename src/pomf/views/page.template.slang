@@ -17,10 +17,10 @@ html
       header
         .wrapper
           h1
-            == "<a href=\"#{Pomf.url}\"><i class=\"fa fa-paw\" aria-hidden=\"true\"></i>nya<i>.is</i></a>"
+            == "<a href=\"#{Pomf.url}upload\"><i class=\"fa fa-paw\" aria-hidden=\"true\"></i>nya<i>.is</i></a>"
           ul
             li
-              == "<a href=\"#{Pomf.url}\">Upload</a>"
+              == "<a href=\"#{Pomf.url}upload\">Upload</a>"
             li
               == "<a href=\"#{Pomf.url}faq\">FAQ</a>"
             li

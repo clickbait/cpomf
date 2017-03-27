@@ -1,9 +1,10 @@
 module Pomf
   class Router < Crouter::Router
-    get "/", "PageController#home"
-    get "/register", "PageController#register"
+    get "/", "PageController#redirect"
     get "/login", "PageController#login"
+    get "/register", "PageController#register"
     get "/files", "PageController#files"
+    get "/upload", "PageController#home"
 
     post "/upload(.php)", "UploadController#do_upload"
     post "/login", "UserController#do_login"

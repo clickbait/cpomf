@@ -35,7 +35,7 @@ module Pomf
         cookies << HTTP::Cookie.new("auth", token, "/", nil, Pomf.home_host)
         cookies.add_response_headers(context.response.headers)
 
-        Util.redirect("/")
+        Util.redirect("/files")
       else
         render "pages/login"
       end
@@ -57,7 +57,7 @@ module Pomf
         cookies << HTTP::Cookie.new("auth", token)
         cookies.add_response_headers(context.response.headers)
 
-        Util.redirect("/")
+        Util.redirect("/files")
       else
         render "pages/register"
       end
