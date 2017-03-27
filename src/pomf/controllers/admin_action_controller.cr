@@ -27,7 +27,7 @@ module Pomf
         if !errors.empty?
           render "admin/users/edit"
         else
-          user.not_nil!.username = params["username"].downcase
+          user.not_nil!.username = params["username"]
           user.not_nil!.email = params["email"].downcase
           if !params["password"].empty?
             user.not_nil!.password = params["password"]
