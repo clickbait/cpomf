@@ -27,6 +27,7 @@ module Pomf
       "mpeg",
       "mpg",
       "ogg",
+      "opus",
       "osb",
       "osk",
       "osr",
@@ -46,6 +47,8 @@ module Pomf
       "webp",
       "wmv",
       "xml",
+      "yaml",
+      "yml",
     ]
 
     def view
