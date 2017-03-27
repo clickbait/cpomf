@@ -34,6 +34,7 @@ module Pomf::Util
     def initialize(@context, @params)
       if logged_in_user.nil? || !designated_admins.includes?(logged_in_user.not_nil!["username"])
         Util.redirect("/")
+        raise Exception.new("Not supposed to be here")
       end
     end
 
